@@ -130,7 +130,3 @@ print(valid)
 #Display the error in train and test data
 print('Rmse train :',rmse_train)
 print('Rmse test :',rmse_test)
-
-#Display the accuracy of test and train data
-#print('Acccuracy train :',sum(train_data['Close'])/3139-rmse_train)
-#print('Acccuracy :',sum(test_data['Close'])/844-rmse_test)
