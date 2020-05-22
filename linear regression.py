@@ -9,9 +9,6 @@ from matplotlib import style
 # style.use('ggplot')
 plt.style.use('fivethirtyeight')
 
-# Dataset is now stored in a Pandas Dataframe
-#replace datafile.csv with your csv file
-
 #Importing the dataset
 df = pd.read_csv('google.csv') 
 
