@@ -30,10 +30,9 @@ plt.xlabel('Date',fontsize=18)
 plt.ylabel('Close Price USD ($)',fontsize=18)
 plt.show()
 
-
 x = df[['Open','High','Low','Volume']].values
 y = df['Close'].values
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.8,random_state=0)
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.75,random_state=0)
 
 from sklearn import neighbors
 from sklearn.metrics import mean_squared_error 
@@ -43,7 +42,6 @@ rmse_val = [] #to store rmse values for different k
 for K in range(40):
     K = K+1
     model = neighbors.KNeighborsRegressor(n_neighbors = K)
-
     model.fit(x_train, y_train)  #fit the model
     pred=model.predict(x_test) #make prediction on test set
     error = sqrt(mean_squared_error(y_test,pred)) #calculate rmse
@@ -55,7 +53,7 @@ curve.plot()
 
 from sklearn.neighbors import KNeighborsRegressor
 
-KNN=KNeighborsRegressor(n_neighbors=33)
+KNN=KNeighborsRegressor(n_neighbors=120)
 KNN.fit(x_train,y_train)
 y_pred=model.predict(x_test)
 
@@ -68,7 +66,19 @@ print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_p
 print('KNN score :', KNN.score(x_test, y_test))
 print('Model Accuracy in %age :', 100*KNN.score(x_test, y_test))
 
+sns.pairplot(result,x_vars=['Actual'],y_vars='Predicted',height=7,aspect=1.5,kind='reg')
 
+Open =50.958992
+High=52.958992
+Low=49.958992
+Adj =51.957892
+
+# sw = raw_input('Enter sepal width (cm): ')
+m= df[['Open','High','Low']].values
+# dataClass = KNN.predict([[Open,High,Low,Adj]])
+y_pred2=KNN.predict(m)
+print('Prediction: ')
+print(y_pred2)
 
 
 
