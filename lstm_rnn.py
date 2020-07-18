@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Mar 21 15:30:55 2020
-
-@author: Harshil
-"""
-
 #Import the libraries
 import math
 import numpy as np
@@ -36,7 +29,7 @@ data = df.filter(['Close'])
 #Converting the dataframe to a numpy array
 dataset = data.values
 
-#Get /Compute the number of rows to train the model on
+#Get/Compute the number of rows to train the model on
 training_data_len = math.ceil( len(dataset) *.8) 
 
 #Scale the all of the data to be values between 0 and 1 
@@ -69,7 +62,7 @@ model.add(Dense(units=1))
 model.compile(optimizer='adam', loss='mean_squared_error')
 
 #Train the model
-model.fit(x_train, y_train, batch_size=1, epochs=1)
+h = model.fit(x_train, y_train, batch_size=1, epochs=1)
 
 #Test data set
 test_data = scaled_data[training_data_len - 60: , : ]
@@ -124,9 +117,12 @@ plt.plot(valid[['Close', 'Predictions']],linewidth=2)
 plt.legend(['Val', 'Predictions'], loc='lower right')
 plt.show()
 
-#Display the valid and predicted prices
+#Display the actual and predicted prices
 print(valid)
 
 #Display the error in train and test data
-print('Rmse train :',rmse_train)
-print('Rmse test :',rmse_test)
+print('RMSE train :',rmse_train)
+print('RMSE test :',rmse_test)
+print('Loss :', h.history['loss'])
+print('Model Accuracy in %age :', 100.000-h.history['loss'][0])
+

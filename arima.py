@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 22 23:42:17 2020
-
-@author: Harshil
-"""
 #Importing libraries
 import numpy as np
 import pandas as pd 
@@ -60,12 +54,17 @@ for t in range(len(test_ar)):
     obs = test_ar[t]
     history.append(obs)
     
-#diplaying error and accuracy    
+#comparizon between actual and predicted values
+result = pd.DataFrame({'Actual':test_ar,'Predicted':predictions})
+print(result)
+
+#diplaying analytics    
 error = mean_squared_error(test_ar, predictions)
 print('Testing Mean Squared Error: %.3f' % error)
 error2 = func(test_ar, predictions)
 print('Mean absolute percentage error: %.3f' % error2)
 print('Accuracy obtained: ',  100.000 - error2)
+
 
 #Comparing prices and displaying
 plt.figure(figsize=(16,8))
