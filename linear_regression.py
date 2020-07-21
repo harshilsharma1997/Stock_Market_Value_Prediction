@@ -93,3 +93,5 @@ y_pred2 = regressor.predict(m)
 print('Prediction: '),
 y_pred2
 
+graph=result.head(20)
+graph.plot(kind='bar',figsize=(16,8))

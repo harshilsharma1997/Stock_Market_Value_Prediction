@@ -36,7 +36,7 @@ y = df['Close'].values
 x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.75,random_state=0)
 
 rmse_val = [] #to store rmse values for different k
-for K in range(40):
+for K in range(150):
     K = K+1
     model = neighbors.KNeighborsRegressor(n_neighbors = K)
     model.fit(x_train, y_train)  #fit the model
@@ -48,7 +48,7 @@ for K in range(40):
 curve = pd.DataFrame(rmse_val) #elbow curve 
 curve.plot()
 
-KNN=KNeighborsRegressor(n_neighbors=120)
+KNN=KNeighborsRegressor(n_neighbors=105)
 KNN.fit(x_train,y_train)
 y_pred=model.predict(x_test)
 
